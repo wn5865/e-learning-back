@@ -28,4 +28,4 @@
 .DS_Store
 
 # application properties
-/src/main/resources/application.properties
+/src/main/resources/
