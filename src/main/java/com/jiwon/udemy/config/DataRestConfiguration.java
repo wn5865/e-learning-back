@@ -35,7 +35,7 @@ public class DataRestConfiguration implements RepositoryRestConfigurer {
 
         // configure CORS
         cors.addMapping("/**")
-            .allowedOrigins("http://localhost:4200")
+            .allowedOrigins("https://jiwon-online-learning.herokuapp.com")
             .allowedMethods("GET", "PUT", "POST", "DELETE")
             .maxAge(3600);
     }
