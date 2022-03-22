@@ -15,7 +15,7 @@
     <description>Udemy project for Spring Boot</description>
     <packaging>war</packaging>
     <properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
     </properties>
     <dependencies>
         <dependency>
