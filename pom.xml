@@ -8,14 +8,16 @@
         <version>2.6.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
     <groupId>com.jiwon</groupId>
     <artifactId>udemy</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>udemy</name>
     <description>Udemy project for Spring Boot</description>
     <packaging>war</packaging>
+
     <properties>
-        <java.version>17</java.version>
+        <java.version>11</java.version>
     </properties>
     <dependencies>
         <dependency>

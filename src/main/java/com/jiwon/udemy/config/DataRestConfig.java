@@ -55,10 +55,8 @@ public class DataRestConfig implements RepositoryRestConfigurer {
         config.exposeIdsFor(entityClasses.toArray(Class<?>[]::new));
     }
 
-    private <T> void disableHttpMethods(
-        RepositoryRestConfiguration config, Class<T> clazz,
-        HttpMethod[] unsupportedMethods
-    ) {
+    private <T> void disableHttpMethods(RepositoryRestConfiguration config, Class<T> clazz,
+                                        HttpMethod[] unsupportedMethods) {
         config.getExposureConfiguration()
             .forDomainType(clazz)
             .withItemExposure((metadata, httpMethods) -> httpMethods.disable(unsupportedMethods))

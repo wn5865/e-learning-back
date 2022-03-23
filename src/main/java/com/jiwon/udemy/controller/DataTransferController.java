@@ -30,6 +30,22 @@ public class DataTransferController {
         return "Welcome!";
     }
 
+    @GetMapping("images/{id}")
+    public ResponseEntity<?> getImage(@PathVariable String id) throws IOException {
+        byte[] data = storageService.getImage(id);
+        return ResponseEntity.ok()
+            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + id + "\"")
+            .body(data);
+    }
+
+    @GetMapping("videos/{id}")
+    public ResponseEntity<?> getVideo(@PathVariable String id) throws IOException {
+        byte[] data = storageService.getVideo(id);
+        return ResponseEntity.ok()
+            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + id + "\"")
+            .body(data);
+    }
+
     @PostMapping("/upload/courses")
     public ResponseEntity<?> uploadCourse(@RequestBody CourseForm courseForm) {
         Course course = courseForm.getCourse();
@@ -57,25 +73,8 @@ public class DataTransferController {
     @PostMapping("/upload/videos")
     public ResponseEntity<?> uploadVideo(@RequestParam("video") MultipartFile file,
                                          @RequestParam("lecture") Lecture lecture) throws IOException {
-        Video savedVideo = storageService.store(file, lecture);
-        return ResponseEntity.ok().body(savedVideo);
-    }
-
-    @GetMapping("images/{id}")
-    public ResponseEntity<?> getImage(@PathVariable String id) throws IOException {
-        byte[] data = storageService.getImage(id);
-        return ResponseEntity.ok()
-            .header(HttpHeaders.CONTENT_DISPOSITION,
-                "attachment; filename=\"" + id + "\"")
-            .body(data);
-    }
-
-    @GetMapping("videos/{id}")
-    public ResponseEntity<?> getVideo(@PathVariable String id) throws IOException {
-        byte[] data = storageService.getVideo(id);
-        return ResponseEntity.ok()
-            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + id + "\"")
-            .body(data);
+        Video returned = storageService.store(file, lecture);
+        return ResponseEntity.ok().body(returned);
     }
 
     @ExceptionHandler(Exception.class)
