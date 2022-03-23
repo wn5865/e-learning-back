@@ -16,6 +16,10 @@ public class CourseForm {
     Lecture[] lectures;
     Integer[] groups;
 
+    public CourseForm() {
+
+    }
+
     public CourseForm(Course course, Lecture[] lectures) {
         this.course = course;
         this.lectures = lectures;

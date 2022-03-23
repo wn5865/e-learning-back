@@ -18,8 +18,8 @@ import java.util.stream.Collectors;
 
 @Configuration
 public class DataRestConfig implements RepositoryRestConfigurer {
-    @Value("${url.front}")
-    private String allowedOrigin;
+    @Value("${url.allowed.origins}")
+    private String[] allowedOrigins;
     private final EntityManager entityManager;
 
     public DataRestConfig(EntityManager entityManager) {
@@ -38,7 +38,7 @@ public class DataRestConfig implements RepositoryRestConfigurer {
 
         // configure CORS
         cors.addMapping("/**")
-            .allowedOrigins(allowedOrigin)
+            .allowedOrigins(allowedOrigins)
             .allowedMethods("GET", "PUT", "POST", "DELETE")
             .maxAge(3600);
     }
