@@ -5,6 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.nio.file.Path;
 
@@ -17,23 +19,29 @@ public class UdemyApplication extends SpringBootServletInitializer {
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(UdemyApplication.class);
     }
-    @Bean(name = "apiUrl")
-    public String getApiUrl() {
-        return "http://localhost:8080";
-    }
 
-    @Bean(name = "uploadPath")
-    public String getUploadPath() {
+    @Bean
+    public String uploadPath() {
         return Path.of(System.getProperty("user.dir"), "upload").toString();
     }
 
-    @Bean(name = "imageUploadPath")
-    public String getImgUploadPath() {
-        return Path.of(getUploadPath(), "images").toString();
+    @Bean
+    public String imageUploadPath() {
+        return Path.of(uploadPath(), "images").toString();
     }
 
-    @Bean(name = "videoUploadPath")
-    public String getVideoUploadPath() {
-        return Path.of(getUploadPath(), "videos").toString();
+    @Bean
+    public String videoUploadPath() {
+        return Path.of(uploadPath(), "videos").toString();
+    }
+
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/greeting-javaconfig").allowedOrigins("http://localhost:8080");
+            }
+        };
     }
 }

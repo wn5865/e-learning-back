@@ -2,6 +2,7 @@ package com.jiwon.udemy.service;
 
 import com.jiwon.udemy.model.*;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,12 +21,12 @@ public class StorageService {
 
     public StorageService(@Qualifier("imageUploadPath") String imageUploadPath,
                           @Qualifier("videoUploadPath") String videoUploadPath,
-                          @Qualifier("apiUrl") String apiUrl,
+                          @Value("${url.server}") String serverUrl,
                           VideoRepository videoRepository,
                           ImageRepository imageRepository) {
         this.imageRepository = imageRepository;
         this.videoRepository = videoRepository;
-        this.apiUrl = apiUrl;
+        this.apiUrl = serverUrl;
         this.imageUploadPath = imageUploadPath;
         this.videoUploadPath = videoUploadPath;
     }

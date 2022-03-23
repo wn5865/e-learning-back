@@ -2,6 +2,7 @@ package com.jiwon.udemy.config;
 
 import com.jiwon.udemy.model.CourseCategory;
 import com.jiwon.udemy.model.Level;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
@@ -16,10 +17,12 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Configuration
-public class DataRestConfiguration implements RepositoryRestConfigurer {
+public class DataRestConfig implements RepositoryRestConfigurer {
+    @Value("${url.front}")
+    private String allowedOrigin;
     private final EntityManager entityManager;
 
-    public DataRestConfiguration(EntityManager entityManager) {
+    public DataRestConfig(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
@@ -35,7 +38,7 @@ public class DataRestConfiguration implements RepositoryRestConfigurer {
 
         // configure CORS
         cors.addMapping("/**")
-            .allowedOrigins("https://jiwon-online-learning.herokuapp.com")
+            .allowedOrigins(allowedOrigin)
             .allowedMethods("GET", "PUT", "POST", "DELETE")
             .maxAge(3600);
     }

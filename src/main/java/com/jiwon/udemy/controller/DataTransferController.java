@@ -15,7 +15,6 @@ import java.util.Arrays;
 
 @Controller
 @RequestMapping("/")
-@CrossOrigin("https://jiwon-online-learning.herokuapp.com/")
 public class DataTransferController {
 
     private final StorageService storageService;
