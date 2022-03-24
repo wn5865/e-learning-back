@@ -1,6 +1,6 @@
 # 온라인 교육 사이트 프로젝트
 
-그린컴퓨터 아카데미 수료 포트폴리오로 제출한 온라인 강의 사이트의 프론트엔드 코드입니다.
+그린컴퓨터 아카데미 수료 포트폴리오로 제출한 온라인 강의 사이트의 백엔드 코드입니다.
 
 ## 사용기술
 
@@ -26,6 +26,6 @@ https://jiwon-online-learning.herokuapp.com/
 
 https://drive.google.com/file/d/13nEgJkqbKfgOWFrpwl8DO6l5TLtxP0QI/view?usp=sharing
 
-## 백엔드 코드
+## 프론트엔드 코드
 
-https://github.com/wn5865/e-learning-back
+https://github.com/wn5865/e-learning-front
